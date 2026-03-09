@@ -5,6 +5,10 @@ from groq import Groq
 from dotenv import load_dotenv
 import os
 import json
+import whisper
+import tempfile
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 load_dotenv()
 
@@ -211,4 +215,75 @@ def analyse_meeting(request: TranscriptRequest):
         raise HTTPException(status_code=500, detail="AI returned invalid format. Try again.")
 
     except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Something went wrong: {str(e)}")
+    
+@app.post("/transcribe")
+async def transcribe_and_analyse(
+    file: UploadFile = File(...),
+    meeting_type: str = "standup"
+):
+    allowed_extensions = ["mp3", "mp4", "wav", "m4a", "mpeg", "mpga", "webm"]
+    
+    file_extension = file.filename.split(".")[-1].lower()
+    
+    if file_extension not in allowed_extensions:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid file type. Please upload MP3, MP4, WAV, or M4A."
+        )
+    
+    if meeting_type not in ["standup", "sprint", "product_review", "client_call"]:
+        raise HTTPException(status_code=400, detail="Invalid meeting type")
+    
+    try:
+        audio_bytes = await file.read()
+        
+        with tempfile.NamedTemporaryFile(delete=False, suffix=f".{file_extension}") as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        
+        model = whisper.load_model("base")
+        result = model.transcribe(tmp_path)
+        transcript_text = result["text"]
+        
+        os.unlink(tmp_path)
+        
+        if not transcript_text.strip():
+            raise HTTPException(status_code=400, detail="Could not transcribe audio. Please check the file.")
+        
+        prompt = get_meeting_prompt(transcript_text, meeting_type)
+        
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.1,
+        )
+        
+        raw_output = response.choices[0].message.content
+        
+        clean_output = raw_output.strip()
+        if clean_output.startswith("```json"):
+            clean_output = clean_output[7:]
+        if clean_output.startswith("```"):
+            clean_output = clean_output[3:]
+        if clean_output.endswith("```"):
+            clean_output = clean_output[:-3]
+        clean_output = clean_output.strip()
+        
+        result = json.loads(clean_output)
+        result["meeting_type"] = meeting_type
+        result["transcript"] = transcript_text
+        
+        return result
+    
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=500, detail="AI returned invalid format. Try again.")
+    
+    except Exception as e:
+        os.unlink(tmp_path) if 'tmp_path' in locals() else None
         raise HTTPException(status_code=500, detail=f"Something went wrong: {str(e)}")
