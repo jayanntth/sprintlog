@@ -9,6 +9,7 @@ import whisper
 import tempfile
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
+os.environ["PATH"] += os.pathsep + "/opt/homebrew/bin"
 
 load_dotenv()
 

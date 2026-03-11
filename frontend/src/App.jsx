@@ -25,12 +25,13 @@ const COLORS = {
 const styles = {
   page: {
     minHeight: "100vh",
+    width: "100%",
     background: "linear-gradient(135deg, #F0F4FF 0%, #FAFAFA 50%, #F5F3FF 100%)",
     fontFamily: "'Arial', sans-serif",
   },
   navbar: {
-    background: COLORS.white,
-    borderBottom: `1px solid ${COLORS.gray200}`,
+    background: "#FFFFFF",
+    borderBottom: "1px solid #E5E7EB",
     padding: "0 40px",
     display: "flex",
     alignItems: "center",
@@ -40,25 +41,29 @@ const styles = {
     position: "sticky",
     top: 0,
     zIndex: 100,
+    width: "100%",
+    boxSizing: "border-box",
   },
   navLogo: {
     fontSize: "22px",
     fontWeight: "900",
-    color: COLORS.primary,
+    color: "#4F46E5",
     letterSpacing: "-0.5px",
   },
   navBadge: {
-    background: COLORS.primaryLight,
-    color: COLORS.primary,
+    background: "#EEF2FF",
+    color: "#4F46E5",
     fontSize: "12px",
     fontWeight: "bold",
     padding: "4px 10px",
     borderRadius: "20px",
   },
   container: {
-    maxWidth: "860px",
+    maxWidth: "960px",
+    width: "100%",
     margin: "0 auto",
     padding: "48px 24px",
+    boxSizing: "border-box",
   },
   hero: {
     textAlign: "center",
@@ -67,17 +72,17 @@ const styles = {
   heroTitle: {
     fontSize: "48px",
     fontWeight: "900",
-    color: COLORS.gray900,
+    color: "#111827",
     margin: "0 0 12px",
     letterSpacing: "-1px",
     lineHeight: "1.1",
   },
   heroSpan: {
-    color: COLORS.primary,
+    color: "#4F46E5",
   },
   heroSubtitle: {
     fontSize: "17px",
-    color: COLORS.gray500,
+    color: "#6B7280",
     margin: "0 0 24px",
     lineHeight: "1.5",
   },
@@ -88,25 +93,25 @@ const styles = {
     flexWrap: "wrap",
   },
   heroBadge: {
-    background: COLORS.white,
-    border: `1px solid ${COLORS.gray200}`,
+    background: "#FFFFFF",
+    border: "1px solid #E5E7EB",
     borderRadius: "20px",
     padding: "6px 14px",
     fontSize: "13px",
-    color: COLORS.gray500,
+    color: "#6B7280",
     fontWeight: "500",
   },
   card: {
-    background: COLORS.white,
+    background: "#FFFFFF",
     borderRadius: "16px",
     padding: "28px",
     marginBottom: "16px",
-    border: `1px solid ${COLORS.gray200}`,
+    border: "1px solid #E5E7EB",
     boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
   },
   label: {
     fontWeight: "700",
-    color: COLORS.gray700,
+    color: "#374151",
     display: "block",
     marginBottom: "8px",
     fontSize: "14px",
@@ -117,10 +122,10 @@ const styles = {
     width: "100%",
     padding: "12px 16px",
     borderRadius: "10px",
-    border: `1.5px solid ${COLORS.gray200}`,
+    border: "1.5px solid #E5E7EB",
     fontSize: "15px",
-    background: COLORS.white,
-    color: COLORS.gray700,
+    background: "#FFFFFF",
+    color: "#374151",
     outline: "none",
     cursor: "pointer",
   },
@@ -128,42 +133,29 @@ const styles = {
     display: "flex",
     gap: "8px",
     marginBottom: "20px",
-    background: COLORS.gray100,
+    background: "#F3F4F6",
     borderRadius: "10px",
     padding: "4px",
   },
-  toggleBtn: (active) => ({
-    flex: 1,
-    padding: "10px",
-    borderRadius: "8px",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "700",
-    fontSize: "14px",
-    transition: "all 0.2s",
-    background: active ? COLORS.white : "transparent",
-    color: active ? COLORS.primary : COLORS.gray500,
-    boxShadow: active ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
-  }),
   textarea: {
     width: "100%",
     padding: "14px 16px",
     borderRadius: "10px",
-    border: `1.5px solid ${COLORS.gray200}`,
+    border: "1.5px solid #E5E7EB",
     fontSize: "14px",
     resize: "vertical",
     boxSizing: "border-box",
-    color: COLORS.gray700,
+    color: "#374151",
     lineHeight: "1.6",
     outline: "none",
     fontFamily: "Arial, sans-serif",
   },
   uploadBox: {
-    border: `2px dashed ${COLORS.gray200}`,
+    border: "2px dashed #E5E7EB",
     borderRadius: "12px",
     padding: "40px 24px",
     textAlign: "center",
-    background: COLORS.gray50,
+    background: "#F9FAFB",
     cursor: "pointer",
     transition: "all 0.2s",
   },
@@ -172,43 +164,27 @@ const styles = {
     marginBottom: "12px",
   },
   uploadText: {
-    color: COLORS.gray500,
+    color: "#6B7280",
     margin: "0 0 6px",
     fontSize: "15px",
     fontWeight: "600",
   },
   uploadHint: {
-    color: COLORS.gray400,
+    color: "#9CA3AF",
     margin: "0",
     fontSize: "13px",
   },
-  analyseBtn: (loading) => ({
-    width: "100%",
-    padding: "16px",
-    background: loading
-      ? COLORS.gray400
-      : `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.purple} 100%)`,
-    color: COLORS.white,
-    border: "none",
-    borderRadius: "12px",
-    fontSize: "16px",
-    fontWeight: "800",
-    cursor: loading ? "not-allowed" : "pointer",
-    letterSpacing: "0.3px",
-    boxShadow: loading ? "none" : "0 4px 14px rgba(79,70,229,0.4)",
-    marginTop: "8px",
-  }),
   errorBox: {
     marginTop: "12px",
     padding: "14px 16px",
-    background: COLORS.dangerLight,
+    background: "#FEE2E2",
     borderRadius: "10px",
-    color: COLORS.danger,
+    color: "#DC2626",
     fontSize: "14px",
     fontWeight: "500",
   },
   healthBar: {
-    background: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.purple} 100%)`,
+    background: "linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)",
     borderRadius: "14px",
     padding: "18px 24px",
     marginBottom: "16px",
@@ -219,7 +195,7 @@ const styles = {
   },
   healthItem: {
     textAlign: "center",
-    color: COLORS.white,
+    color: "#FFFFFF",
   },
   healthNumber: {
     fontSize: "28px",
@@ -241,27 +217,6 @@ const styles = {
     marginBottom: "16px",
     flexWrap: "wrap",
   },
-  exportBtn: (color) => ({
-    padding: "10px 18px",
-    background: color,
-    color: COLORS.white,
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "700",
-    fontSize: "13px",
-    boxShadow: `0 2px 6px ${color}55`,
-  }),
-  sectionTitle: (color) => ({
-    color: color || COLORS.primary,
-    marginTop: "0",
-    marginBottom: "16px",
-    fontSize: "18px",
-    fontWeight: "800",
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-  }),
   table: {
     width: "100%",
     borderCollapse: "collapse",
@@ -269,8 +224,8 @@ const styles = {
   th: {
     padding: "10px 12px",
     textAlign: "left",
-    borderBottom: `2px solid ${COLORS.gray100}`,
-    color: COLORS.gray500,
+    borderBottom: "2px solid #F3F4F6",
+    color: "#6B7280",
     fontSize: "12px",
     textTransform: "uppercase",
     letterSpacing: "0.5px",
@@ -278,52 +233,44 @@ const styles = {
   },
   td: {
     padding: "12px",
-    color: COLORS.gray700,
+    color: "#374151",
     fontSize: "14px",
-    borderBottom: `1px solid ${COLORS.gray100}`,
+    borderBottom: "1px solid #F3F4F6",
   },
-  priorityBadge: (priority) => ({
-    padding: "3px 10px",
-    borderRadius: "20px",
-    fontSize: "12px",
-    fontWeight: "700",
-    background: priority === "High" ? COLORS.dangerLight : priority === "Medium" ? COLORS.warningLight : COLORS.successLight,
-    color: priority === "High" ? COLORS.danger : priority === "Medium" ? COLORS.warning : COLORS.success,
-  }),
   blockerCard: {
     background: "#FFF5F5",
     borderRadius: "10px",
     padding: "14px 16px",
     marginBottom: "10px",
-    borderLeft: `3px solid ${COLORS.danger}`,
+    borderLeft: "3px solid #DC2626",
   },
   blockerTitle: {
     margin: "0 0 6px",
     fontWeight: "700",
-    color: COLORS.gray700,
+    color: "#374151",
     fontSize: "14px",
   },
   blockerMeta: {
     margin: "0",
     fontSize: "13px",
-    color: COLORS.gray500,
+    color: "#6B7280",
   },
   decisionItem: {
     display: "flex",
     alignItems: "center",
     padding: "10px 0",
-    borderBottom: `1px solid ${COLORS.gray100}`,
+    borderBottom: "1px solid #F3F4F6",
     gap: "10px",
   },
   questionItem: {
     display: "flex",
     alignItems: "center",
     padding: "10px 0",
-    borderBottom: `1px solid ${COLORS.gray100}`,
+    borderBottom: "1px solid #F3F4F6",
     gap: "10px",
   },
   summaryText: {
-    color: COLORS.gray700,
+    color: "#374151",
     lineHeight: "1.7",
     fontSize: "15px",
     margin: "0 0 12px",
@@ -335,8 +282,8 @@ const styles = {
     marginTop: "4px",
   },
   participantChip: {
-    background: COLORS.primaryLight,
-    color: COLORS.primary,
+    background: "#EEF2FF",
+    color: "#4F46E5",
     padding: "4px 12px",
     borderRadius: "20px",
     fontSize: "13px",
@@ -382,8 +329,9 @@ export default function App() {
         })
       }
       setResult(response.data)
-    } catch {
-      setError("Something went wrong. Make sure your backend server is running.")
+    } catch (err) {
+      const detail = err?.response?.data?.detail
+      setError(detail || "Something went wrong. Make sure your backend server is running.")
     } finally {
       setLoading(false)
     }
@@ -436,6 +384,66 @@ export default function App() {
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
+
+  const toggleBtn = (active) => ({
+    flex: 1,
+    padding: "10px",
+    borderRadius: "8px",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: "700",
+    fontSize: "14px",
+    background: active ? "#FFFFFF" : "transparent",
+    color: active ? "#4F46E5" : "#6B7280",
+    boxShadow: active ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
+  })
+
+  const analyseBtn = (loading) => ({
+    width: "100%",
+    padding: "16px",
+    background: loading ? "#9CA3AF" : "linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)",
+    color: "#FFFFFF",
+    border: "none",
+    borderRadius: "12px",
+    fontSize: "16px",
+    fontWeight: "800",
+    cursor: loading ? "not-allowed" : "pointer",
+    letterSpacing: "0.3px",
+    boxShadow: loading ? "none" : "0 4px 14px rgba(79,70,229,0.4)",
+    marginTop: "8px",
+  })
+
+  const exportBtn = (color) => ({
+    padding: "10px 18px",
+    background: color,
+    color: "#FFFFFF",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontWeight: "700",
+    fontSize: "13px",
+    boxShadow: `0 2px 6px ${color}55`,
+  })
+
+  const priorityBadge = (priority) => ({
+    padding: "3px 10px",
+    borderRadius: "20px",
+    fontSize: "12px",
+    fontWeight: "700",
+    background: priority === "High" ? "#FEE2E2" : priority === "Medium" ? "#FEF3C7" : "#D1FAE5",
+    color: priority === "High" ? "#DC2626" : priority === "Medium" ? "#D97706" : "#059669",
+  })
+
+  const sectionTitle = (color) => ({
+    color: color || "#4F46E5",
+    marginTop: "0",
+    marginBottom: "16px",
+    fontSize: "18px",
+    fontWeight: "800",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+  })
 
   const meetingLabels = {
     standup: "Daily Standup",
@@ -492,10 +500,10 @@ export default function App() {
 
           {/* Toggle */}
           <div style={styles.toggleRow}>
-            <button style={styles.toggleBtn(inputMode === "text")} onClick={() => setInputMode("text")}>
+            <button style={toggleBtn(inputMode === "text")} onClick={() => setInputMode("text")}>
               📝 Paste Transcript
             </button>
-            <button style={styles.toggleBtn(inputMode === "audio")} onClick={() => setInputMode("audio")}>
+            <button style={toggleBtn(inputMode === "audio")} onClick={() => setInputMode("audio")}>
               🎙️ Upload Audio
             </button>
           </div>
@@ -516,15 +524,16 @@ export default function App() {
 
           {/* Audio Input */}
           {inputMode === "audio" && (
-            <div style={{ marginBottom: "16px" }}
-              onClick={() => document.getElementById("audioInput").click()}
-            >
-              <div style={styles.uploadBox}>
+            <div style={{ marginBottom: "16px" }}>
+              <div
+                style={styles.uploadBox}
+                onClick={() => document.getElementById("audioInput").click()}
+              >
                 <div style={styles.uploadIcon}>{audioFile ? "✅" : "🎵"}</div>
                 <p style={styles.uploadText}>
                   {audioFile ? audioFile.name : "Click to upload your meeting recording"}
                 </p>
-                <p style={styles.uploadHint}>Supports MP3, MP4, WAV, M4A</p>
+                <p style={styles.uploadHint}>Supports MP3, MP4, WAV, M4A — transcribed automatically</p>
                 <input
                   id="audioInput"
                   type="file"
@@ -537,7 +546,7 @@ export default function App() {
           )}
 
           {/* Button */}
-          <button onClick={handleAnalyse} disabled={loading} style={styles.analyseBtn(loading)}>
+          <button onClick={handleAnalyse} disabled={loading} style={analyseBtn(loading)}>
             {loading
               ? (inputMode === "audio" ? "⏳ Transcribing & Analysing..." : "⏳ Analysing Meeting...")
               : "Analyse Meeting →"}
@@ -567,25 +576,19 @@ export default function App() {
 
             {/* Export Buttons */}
             <div style={styles.exportRow}>
-              <button onClick={downloadTasksCSV} style={styles.exportBtn(COLORS.success)}>
-                ⬇ Tasks CSV
-              </button>
-              <button onClick={downloadBlockersCSV} style={styles.exportBtn(COLORS.danger)}>
-                ⬇ Blockers CSV
-              </button>
-              <button onClick={downloadSummary} style={styles.exportBtn(COLORS.purple)}>
-                ⬇ Summary
-              </button>
+              <button onClick={downloadTasksCSV} style={exportBtn("#059669")}>⬇ Tasks CSV</button>
+              <button onClick={downloadBlockersCSV} style={exportBtn("#DC2626")}>⬇ Blockers CSV</button>
+              <button onClick={downloadSummary} style={exportBtn("#7C3AED")}>⬇ Summary</button>
               {result.meeting_type === "client_call" && (
-                <button onClick={copyFollowUpEmail} style={styles.exportBtn(copied ? COLORS.success : COLORS.warning)}>
+                <button onClick={copyFollowUpEmail} style={exportBtn(copied ? "#059669" : "#D97706")}>
                   {copied ? "✅ Copied!" : "✉ Copy Follow-up Email"}
                 </button>
               )}
             </div>
 
-            {/* Summary Card */}
+            {/* Summary */}
             <div style={styles.card}>
-              <h2 style={styles.sectionTitle(COLORS.primary)}>
+              <h2 style={sectionTitle("#4F46E5")}>
                 📋 Summary — {meetingLabels[result.meeting_type]}
               </h2>
               <p style={styles.summaryText}>{result.summary}</p>
@@ -599,7 +602,7 @@ export default function App() {
             {/* Action Items */}
             {result.action_items.length > 0 && (
               <div style={styles.card}>
-                <h2 style={styles.sectionTitle(COLORS.primary)}>✅ Action Items</h2>
+                <h2 style={sectionTitle("#4F46E5")}>✅ Action Items</h2>
                 <table style={styles.table}>
                   <thead>
                     <tr>
@@ -615,7 +618,7 @@ export default function App() {
                         <td style={styles.td}>{item.assignee || "Unassigned"}</td>
                         <td style={styles.td}>{item.due_date || "—"}</td>
                         <td style={styles.td}>
-                          <span style={styles.priorityBadge(item.priority)}>{item.priority}</span>
+                          <span style={priorityBadge(item.priority)}>{item.priority}</span>
                         </td>
                       </tr>
                     ))}
@@ -627,7 +630,7 @@ export default function App() {
             {/* Blockers */}
             {result.blockers.length > 0 && (
               <div style={styles.card}>
-                <h2 style={styles.sectionTitle(COLORS.danger)}>🚨 Blockers</h2>
+                <h2 style={sectionTitle("#DC2626")}>🚨 Blockers</h2>
                 {result.blockers.map((b, i) => (
                   <div key={i} style={styles.blockerCard}>
                     <p style={styles.blockerTitle}>{b.blocker}</p>
@@ -642,11 +645,11 @@ export default function App() {
             {/* Decisions */}
             {result.decisions.length > 0 && (
               <div style={styles.card}>
-                <h2 style={styles.sectionTitle(COLORS.success)}>🎯 Decisions Made</h2>
+                <h2 style={sectionTitle("#059669")}>🎯 Decisions Made</h2>
                 {result.decisions.map((d, i) => (
                   <div key={i} style={styles.decisionItem}>
-                    <span style={{ color: COLORS.success, fontSize: "18px" }}>✓</span>
-                    <span style={{ color: COLORS.gray700, fontSize: "14px" }}>{d}</span>
+                    <span style={{ color: "#059669", fontSize: "18px" }}>✓</span>
+                    <span style={{ color: "#374151", fontSize: "14px" }}>{d}</span>
                   </div>
                 ))}
               </div>
@@ -655,11 +658,11 @@ export default function App() {
             {/* Open Questions */}
             {result.open_questions.length > 0 && (
               <div style={styles.card}>
-                <h2 style={styles.sectionTitle(COLORS.warning)}>❓ Open Questions</h2>
+                <h2 style={sectionTitle("#D97706")}>❓ Open Questions</h2>
                 {result.open_questions.map((q, i) => (
                   <div key={i} style={styles.questionItem}>
-                    <span style={{ color: COLORS.warning, fontSize: "18px" }}>?</span>
-                    <span style={{ color: COLORS.gray700, fontSize: "14px" }}>{q}</span>
+                    <span style={{ color: "#D97706", fontSize: "18px" }}>?</span>
+                    <span style={{ color: "#374151", fontSize: "14px" }}>{q}</span>
                   </div>
                 ))}
               </div>
