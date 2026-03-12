@@ -22,6 +22,8 @@ const COLORS = {
   white: "#FFFFFF",
 }
 
+const API_URL = "https://sprintlog-backend.onrender.com"
+
 const styles = {
   page: {
     minHeight: "100vh",
@@ -316,7 +318,7 @@ export default function App() {
     try {
       let response
       if (inputMode === "text") {
-        response = await axios.post("http://127.0.0.1:8000/analyse", {
+        response = await axios.post(`${API_URL}/analyse`, {
           transcript,
           meeting_type: meetingType,
         })
@@ -324,7 +326,7 @@ export default function App() {
         const formData = new FormData()
         formData.append("file", audioFile)
         formData.append("meeting_type", meetingType)
-        response = await axios.post("http://127.0.0.1:8000/transcribe", formData, {
+        response = await axios.post(`${API_URL}/transcribe`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
       }
